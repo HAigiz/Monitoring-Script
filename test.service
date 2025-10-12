@@ -1,0 +1,8 @@
+[Unit]
+Description = This is a monitoring test for company Effective Mobile
+After = network.target
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=/usr/local/bin/monitoring.sh
