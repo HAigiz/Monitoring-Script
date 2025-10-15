@@ -20,12 +20,9 @@ sudo cp test.service /etc/systemd/system/
 sudo cp test.timer /etc/systemd/system/
 ```
 ### 2. Права и логи
-Убедитесь, что скрипт имеет права на выполнение, и создайте пустой лог-файл:
+Убедитесь, что скрипт имеет права на выполнение:
 ```bash
 sudo chmod +x /usr/local/bin/monitoring.sh
-sudo touch /var/log/monitoring.log
-# Установите права, чтобы systemd мог писать в лог
-sudo chmod 664 /var/log/monitoring.log
 ```
 
 ### 3. Активация systemd
@@ -38,10 +35,3 @@ sudo systemctl start test.timer
 
 ## Проверка статуса
 **Проверка статуса таймера:** `systemctl status test.timer`
-**Проверка лога:** `sudo cat /var/log/monitoring.log`
-
-# Совет по улучшению кода
-В строке, где логируем предупреждение, переменная `MONITORING_URL` не выводится(если тестируете несколько серверов, то стоит добавить).
-```bash
-log_message "WARNING: Monitoring server returned error status code: $HTTP_STATUS. URL: $MONITORING_URL"
-```
